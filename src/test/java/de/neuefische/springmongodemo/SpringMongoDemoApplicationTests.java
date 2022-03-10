@@ -2,7 +2,6 @@ package de.neuefische.springmongodemo;
 
 import de.neuefische.springmongodemo.model.Question;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,7 +15,6 @@ class SpringMongoDemoApplicationTests {
 	@Autowired
 	TestRestTemplate restTemplate;
 
-	@Disabled
 	@Test
 	void shouldGetAllQuestions(){
 		Question question = new Question();
@@ -29,7 +27,7 @@ class SpringMongoDemoApplicationTests {
 
 		Question[] questions = restTemplate.getForObject("/questions", Question[].class);
 
-		Assertions.assertThat(questions).isEqualTo(questionArray);
+		Assertions.assertThat(questions).contains(questionArray);
 		System.out.println(questions);
 	}
 
